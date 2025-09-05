@@ -24,11 +24,11 @@ const actors = {
 }
 
 const alpha: Alpha = { type: 'alpha', count: 42 }
-const x = marion(actors, alpha) // Typed as number
+const alphaResult = marion(actors, alpha) // Typed as number
 
 type AlphaBeta = Alpha | Beta
 const beta: AlphaBeta = { type: 'beta', label: 'Hello' }
-const result = marion(actors, beta) // Typed as string
+const betaResult = marion(actors, beta) // Typed as string
 ```
 
 ## Problem
@@ -84,7 +84,7 @@ function handleRequest (request: { type: keyof typeof actors, [key: string]: any
   // '{ id: number; name: string; }'. ts(2345)
 }
 
-const deleteResult = handleRequest({ type: 'delete', id: 42 }) // Typed as a union of all return types
+const deleteResult = handleRequest({ type: 'delete', id: 42 }) // Inferred as a union of all return types
 ```
 
 ## Solution
@@ -98,6 +98,7 @@ const updateResult = marion(actors, { type: 'update', id: 42 }) // Correctly thr
 // but required in type '{ id: number; name: string; }'. ts(2345)
 ```
 
-## Marion Doughtery
+## Marion Dougherty
 
-`marion` is named after Marion Doughtery, a pioneering casting director who helped create many great films and acting careers. Many prominent filmmakers lobbied The Academy of Motion Picture Arts and Sciences to recognize her contributions during her lifetime with a special award, but they were refused. Casting director is the most prominent creative role in the film industry more often held by women than men. There is still no Oscar category for casting directors. A casting director finds the perfect actor for each role, and `marion` is dedicated to her legacy.
+`marion` is named after Marion Dougherty, a pioneering casting director who helped create many great films and acting careers. Many prominent filmmakers lobbied The Academy of Motion Picture Arts and Sciences to recognize her contributions during her lifetime with a special award, but they were refused. Casting director is the most prominent creative role in the film industry more often held by women than men. There is still no Oscar category for casting directors. A casting director finds the perfect actor for each role, and `marion` is dedicated to her legacy.
+  
