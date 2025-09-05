@@ -1,0 +1,34 @@
+{
+  "name": "marion",
+  "version": "0.1.0",
+  "description": "Find the right actor with TypeScript",
+  "main": "index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "npx tsc && node dist/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/davidystephenson/marion.git"
+  },
+  "keywords": [
+    "typing",
+    "typesafe"
+  ],
+  "author": "David Y. Stephenson",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/davidystephenson/marion/issues"
+  },
+  "homepage": "https://github.com/davidystephenson/marion#readme",
+  "devDependencies": {
+    "ts-standard": "^12.0.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  }
+}
