@@ -9,7 +9,7 @@ npm install marion
 ## Usage
 
 ```ts
-import marion from '.'
+import marion from 'marion'
 
 interface Alpha { type: 'alpha', count: number }
 interface Beta { type: 'beta', label: string }
