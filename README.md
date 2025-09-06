@@ -24,11 +24,11 @@ const actors = {
 }
 
 const alpha: Alpha = { type: 'alpha', count: 42 }
-const alphaResult = marion(actors, alpha) // Typed as number
+const alphaResult = marion(actors, alpha) // Inferred as number
 
 type AlphaBeta = Alpha | Beta
 const beta: AlphaBeta = { type: 'beta', label: 'Hello' }
-const betaResult = marion(actors, beta) // Typed as string
+const betaResult = marion(actors, beta) // Inferred as string
 ```
 
 ## Problem
@@ -52,7 +52,8 @@ function handleRequest(request) {
   return actor(request)
 }
 
-const deleteResult = handleRequest({ type: 'delete', id: 42 }) // Result is boolean
+const deleteResult = handleRequest({ type: 'delete', id: 42 })
+// Result is boolean
 ```
 
 In TypeScript, this pattern often leads to unsafe typing and the input/output being inferred as a union of all possible types:
@@ -78,7 +79,8 @@ function handleRequest (request: { type: keyof typeof actors, [key: string]: any
   // '{ id: number; name: string; }'. ts(2345)
 }
 
-const deleteResult = handleRequest({ type: 'delete', id: 42 }) // Inferred as a union of all return types
+const deleteResult = handleRequest({ type: 'delete', id: 42 })
+// Inferred as a union of all return types
 ```
 
 ## Solution
@@ -86,8 +88,11 @@ const deleteResult = handleRequest({ type: 'delete', id: 42 }) // Inferred as a 
 `marion` provides a fully type safe experience that infers the correct input and output types based on the `type` property:
 
 ```ts
-const deleteResult = marion(actors, { type: 'delete', id: 42 }) // Correctly typed as boolean
-const createResult = marion(actors, { type: 'create', id: 42 }) // Correctly throws:
+const deleteResult = marion(actors, { type: 'delete', id: 42 })
+// Correctly inferred as boolean
+
+const createResult = marion(actors, { type: 'create', id: 42 })
+// Correctly throws:
 // Property 'name' is missing in type '{ type: "create"; id: number; }'
 // but required in type '{ name: string; }'. ts(2345)
 ```
