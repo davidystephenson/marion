@@ -39,11 +39,13 @@ In JavaScript, it is common to have a set of functions that handle different inp
 let users = []
 
 const actors = {
-  create: (values) => users.push({ id: users.length + 1, ...values }),
+  create: (request) => users.push({
+    id: users.length + 1, name: request.name
+  }),
   read: () => users,
-  delete: ({ id }) => {
-    users = users.filter(user => user.id !== id)
-    return users.every(user => user.id !== id)
+  delete: (request) => {
+    users = users.filter(user => user.id !== request.id)
+    return users.every(user => user.id !== request.id)
   }
 }
 
@@ -62,11 +64,13 @@ In TypeScript, this pattern often leads to unsafe typing and the input/output be
 let users: Array<{ id: number, name: string }> = []
 
 const actors = {
-  create: (values: { name: string }) => users.push({ id: users.length + 1, ...values }),
+  create: (request: { name: string }) => users.push({
+    id: users.length + 1, name: request.name
+  }),
   read: () => users,
-  delete: ({ id }: { id: number }) => {
-    users = users.filter(user => user.id !== id)
-    return users.every(user => user.id !== id)
+  delete: (request: { id: number }) => {
+    users = users.filter(user => user.id !== request.id)
+    return users.every(user => user.id !== request.id)
   }
 }
 
