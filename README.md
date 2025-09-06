@@ -41,9 +41,6 @@ let users = []
 const actors = {
   create: (values) => users.push({ id: users.length + 1, ...values }),
   read: () => users,
-  update: (values) => users.map(
-    user => user.id === values.id ? { ...user, ...values } : user
-  ),
   delete: ({ id }) => {
     users = users.filter(user => user.id !== id)
     return users.every(user => user.id !== id)
@@ -66,9 +63,6 @@ let users: Array<{ id: number, name: string }> = []
 const actors = {
   create: (values: { name: string }) => users.push({ id: users.length + 1, ...values }),
   read: () => users,
-  update: (values: { id: number, name: string }) => users.map(
-    user => user.id === values.id ? { ...user, ...values } : user
-  ),
   delete: ({ id }: { id: number }) => {
     users = users.filter(user => user.id !== id)
     return users.every(user => user.id !== id)
@@ -93,9 +87,9 @@ const deleteResult = handleRequest({ type: 'delete', id: 42 }) // Inferred as a 
 
 ```ts
 const deleteResult = marion(actors, { type: 'delete', id: 42 }) // Correctly typed as boolean
-const updateResult = marion(actors, { type: 'update', id: 42 }) // Correctly throws:
-// Property 'name' is missing in type '{ type: "update"; id: number; }'
-// but required in type '{ id: number; name: string; }'. ts(2345)
+const createResult = marion(actors, { type: 'create', id: 42 }) // Correctly throws:
+// Property 'name' is missing in type '{ type: "create"; id: number; }'
+// but required in type '{ name: string; }'. ts(2345)
 ```
 
 ## Marion Dougherty
