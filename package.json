@@ -1,6 +1,6 @@
 {
   "name": "marion",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Find the right actor with TypeScript",
   "main": "index.js",
   "module": "./dist/index.mjs",
