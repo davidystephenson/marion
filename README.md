@@ -89,7 +89,7 @@ const deleteResult = handleRequest({ type: 'delete', id: 42 })
 
 ## Solution
 
-`marion` provides a fully type safe experience that infers the correct input and output types based on the `type` property:
+`marion` correctly infers the input and output based on the input's `type` property:
 
 ```ts
 const deleteResult = marion(actors, { type: 'delete', id: 42 })
